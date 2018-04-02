@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        let noteVC = NoteViewController()
+        let noteVC = NoteViewByCodeController()
         
         window?.rootViewController = noteVC
         
