@@ -137,11 +137,19 @@ class NoteViewByCodeController: UIViewController {
         
         switch longPressGesture.state {
         case .began:
+            closeKeyBoard()
             relativePoint = longPressGesture.location(in: imageView)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.imageView.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+            })
         case .changed:
             let location = longPressGesture.location(in: noteTextView)
             leftImgConstraint.constant = location.x - relativePoint.x
             topImgConstraint.constant = location.y - relativePoint.y
+        case .ended, .cancelled:
+            UIView.animate(withDuration: 0.1, animations: {
+                self.imageView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            })
         default:
             break
         }
