@@ -119,7 +119,12 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
         
         let photoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(catchPhoto))
         
-        self.setToolbarItems([photoBarButton], animated: false)
+       
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let mapBarButton = UIBarButtonItem(title: "Map", style: .done, target: self, action: #selector(addLocation))
+        
+        self.setToolbarItems([photoBarButton,flexible, mapBarButton], animated: false)
        
         
         
@@ -222,12 +227,40 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
     
     // Mark: - Toolbar Buttons actions
     @objc func catchPhoto() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
         
-        present(imagePicker, animated: true, completion: nil)
+        let actionSheetAlert = UIAlertController(title: NSLocalizedString("Add photo", comment: "Add photo"), message:nil , preferredStyle: .actionSheet)
+        
+        let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+        
+        let useCamera = UIAlertAction(title: "Camera", style: .default) {
+            (alertAction) in
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+        let usePhotoLibrary = UIAlertAction(title: "Photo Library", style: .default) {
+            (alertAction) in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .destructive, handler: nil)
+        
+        actionSheetAlert.addAction(useCamera)
+        actionSheetAlert.addAction(usePhotoLibrary)
+        actionSheetAlert.addAction(cancel)
+        
+        present(actionSheetAlert, animated: true, completion: nil)
+        
+        
+        
     }
+    
+    @objc func addLocation() {
+        
+    }
+    
     
     
     
