@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoteViewByCodeController: UIViewController {
+class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegate {
 
     // Mark: - Properties
     let dateLabel = UILabel()
@@ -111,6 +111,7 @@ class NoteViewByCodeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "EverPobre"
         
         let swipeGesture = UISwipeGestureRecognizer(target: noteTextView, action: #selector(resignFirstResponder))
         
@@ -207,6 +208,14 @@ class NoteViewByCodeController: UIViewController {
         }else if titleTextField.isFirstResponder{
             titleTextField.resignFirstResponder()
         }
+    }
+    
+    // Mark: - Image Picker Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage]  as! UIImage
+        
+        imageView.image = image
     }
 
 }
