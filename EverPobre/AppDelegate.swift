@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = UINavigationController(rootViewController: noteVC)
         
         window?.rootViewController = navController
+        window?.tintColor = .blue
         
         window?.makeKeyAndVisible()
         

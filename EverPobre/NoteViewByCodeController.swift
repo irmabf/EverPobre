@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegate {
+class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // Mark: - Properties
     let dateLabel = UILabel()
@@ -113,6 +113,16 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         self.title = "EverPobre"
         
+        // Mark: - Navigation Controller
+        
+        navigationController?.isToolbarHidden = false
+        
+        let photoBarButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(catchPhoto))
+        
+        self.setToolbarItems([photoBarButton], animated: false)
+       
+        
+        
         let swipeGesture = UISwipeGestureRecognizer(target: noteTextView, action: #selector(resignFirstResponder))
         
         swipeGesture.direction = .down
@@ -210,12 +220,25 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    // Mark: - Toolbar Buttons actions
+    @objc func catchPhoto() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    
     // Mark: - Image Picker Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let image = info[UIImagePickerControllerOriginalImage]  as! UIImage
         
         imageView.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
     }
 
 }
