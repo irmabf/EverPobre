@@ -24,6 +24,8 @@ class NoteViewByCodeController: UIViewController {
     var leftImgConstraint: NSLayoutConstraint!
     var rightImgConstraint: NSLayoutConstraint!
     
+    var relativePoint: CGPoint!
+    
     
     //Siempre que hago una view por codigo necesito un metodo donde defino la vista
     override func loadView() {
@@ -118,15 +120,45 @@ class NoteViewByCodeController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(moveImage))
         
-        doubleTapGesture.numberOfTapsRequired = 2
+//        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(moveImage))
         
-        imageView.addGestureRecognizer(doubleTapGesture)
+//        doubleTapGesture.numberOfTapsRequired = 2
+        
+//        imageView.addGestureRecognizer(doubleTapGesture)
+        
+        let moveViewGesture = UILongPressGestureRecognizer(target: self, action: #selector(userMoveImage))
+        
+        imageView.addGestureRecognizer(moveViewGesture)
+    }
+    
+    @objc func userMoveImage(longPressGesture: UILongPressGestureRecognizer){
+     
+        
+        switch longPressGesture.state {
+        case .began:
+            relativePoint = longPressGesture.location(in: imageView)
+        case .changed:
+            let location = longPressGesture.location(in: noteTextView)
+            leftImgConstraint.constant = location.x - relativePoint.x
+            topImgConstraint.constant = location.y - relativePoint.y
+        default:
+            break
+        }
+        
+        //let locationInSuperView = longPressGesture.location(in: view)
+        
+        
+        
+        //print("View \(locationInSuperView.x) y noteTextView \(location.x)")
+        /*let location = longPressGesture.location(in: noteTextView)
+        leftImgConstraint.constant = location.x
+        topImgConstraint.constant = location.y*/
     }
     
    
     @objc func moveImage(tapGesture:UITapGestureRecognizer){
+
         
         if topImgConstraint.isActive{
             if leftImgConstraint.isActive{
@@ -154,7 +186,14 @@ class NoteViewByCodeController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        var rect = view.convert(imageView.frame, to: noteTextView )
+        rect = rect.insetBy(dx: -15, dy: -15)
+        let paths = UIBezierPath(rect: rect)
+        noteTextView.textContainer.exclusionPaths = [paths]
+    }
     @objc func closeKeyBoard() {
+        print("No es continuado, es discreto")
         if noteTextView.isFirstResponder{
             noteTextView.resignFirstResponder()
         }else if titleTextField.isFirstResponder{
