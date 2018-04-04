@@ -26,6 +26,8 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
     
     var relativePoint: CGPoint!
     
+    var note:Note?
+    
     
     //Siempre que hago una view por codigo necesito un metodo donde defino la vista
     override func loadView() {
@@ -146,7 +148,19 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
         let moveViewGesture = UILongPressGestureRecognizer(target: self, action: #selector(userMoveImage))
         
         imageView.addGestureRecognizer(moveViewGesture)
+        
+        // Mark: - About Note
+        if note != nil {
+            titleTextField.text = note?.title
+            noteTextView.text = note?.content
+        }
     }
+    
+    
+    
+    
+    
+    
     
     @objc func userMoveImage(longPressGesture: UILongPressGestureRecognizer){
      

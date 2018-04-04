@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B72B332A2073E56200166092 /* Everpobre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B72B33282073E56200166092 /* Everpobre.xcdatamodeld */; };
 		B7409A932072747D00D7E696 /* NoteViewByCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7409A922072747D00D7E696 /* NoteViewByCodeController.swift */; };
+		B7E087DE2074C91F00250B6E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E087DD2074C91F00250B6E /* DataManager.swift */; };
+		B7E087E22074D39100250B6E /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E087E12074D39100250B6E /* NotesTableViewController.swift */; };
 		B7F28E6B2072369A00181E5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F28E6A2072369A00181E5F /* AppDelegate.swift */; };
 		B7F28E722072369A00181E5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F28E712072369A00181E5F /* Assets.xcassets */; };
 		B7F28E752072369A00181E5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F28E732072369A00181E5F /* LaunchScreen.storyboard */; };
@@ -16,7 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B72B33292073E56200166092 /* Everpobre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Everpobre.xcdatamodel; sourceTree = "<group>"; };
 		B7409A922072747D00D7E696 /* NoteViewByCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewByCodeController.swift; sourceTree = "<group>"; };
+		B7E087DD2074C91F00250B6E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B7E087E12074D39100250B6E /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
 		B7F28E672072369A00181E5F /* EverPobre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EverPobre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F28E6A2072369A00181E5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7F28E712072369A00181E5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B72B33272073E4D600166092 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B72B33282073E56200166092 /* Everpobre.xcdatamodeld */,
+				B7E087DD2074C91F00250B6E /* DataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B7F28E5E2072369A00181E5F = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +71,7 @@
 		B7F28E692072369A00181E5F /* EverPobre */ = {
 			isa = PBXGroup;
 			children = (
+				B72B33272073E4D600166092 /* Model */,
 				B7F28E6A2072369A00181E5F /* AppDelegate.swift */,
 				B7F28E712072369A00181E5F /* Assets.xcassets */,
 				B7F28E732072369A00181E5F /* LaunchScreen.storyboard */,
@@ -63,6 +79,7 @@
 				B7F28E7C2072378300181E5F /* NoteViewController.swift */,
 				B7F28E7D2072378300181E5F /* NoteViewController.xib */,
 				B7409A922072747D00D7E696 /* NoteViewByCodeController.swift */,
+				B7E087E12074D39100250B6E /* NotesTableViewController.swift */,
 			);
 			path = EverPobre;
 			sourceTree = "<group>";
@@ -139,9 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72B332A2073E56200166092 /* Everpobre.xcdatamodeld in Sources */,
+				B7E087DE2074C91F00250B6E /* DataManager.swift in Sources */,
 				B7F28E7E2072378300181E5F /* NoteViewController.swift in Sources */,
 				B7F28E6B2072369A00181E5F /* AppDelegate.swift in Sources */,
 				B7409A932072747D00D7E696 /* NoteViewByCodeController.swift in Sources */,
+				B7E087E22074D39100250B6E /* NotesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +336,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B72B33282073E56200166092 /* Everpobre.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B72B33292073E56200166092 /* Everpobre.xcdatamodel */,
+			);
+			currentVersion = B72B33292073E56200166092 /* Everpobre.xcdatamodel */;
+			path = Everpobre.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B7F28E5F2072369A00181E5F /* Project object */;
 }
