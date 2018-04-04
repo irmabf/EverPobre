@@ -84,17 +84,25 @@ class NotesTableViewController: UITableViewController {
     }
     
     @objc func addNewNote() {
-        // Tradicionalmente.
-       let note =   NSEntityDescription.insertNewObject(forEntityName: "Note", into: DataManager.sharedManager.persistentContainer.viewContext) as! Note
+      
+        let privateMOC = DataManager.sharedManager.persistentContainer.newBackgroundContext()
         
-        note.title = "Nueva Nota"
-        note.createdAtTI = Date().timeIntervalSince1970
-        try! DataManager.sharedManager.persistentContainer.viewContext.save()
-        
-        noteList.append(note)
-        
-        tableView.reloadData()
-        
+        privateMOC.perform {
+            let note =   NSEntityDescription.insertNewObject(forEntityName: "Note", into: privateMOC) as! Note
+            
+            note.title = "Nueva Nota"
+            note.createdAtTI = Date().timeIntervalSince1970
+            try! privateMOC.save()
+            
+            DispatchQueue.main.async {
+                let noteInMainThread = DataManager.sharedManager.persistentContainer.viewContext.object(with: note.objectID) as! Note
+                self.noteList.append(noteInMainThread)
+                
+                self.tableView.reloadData()
+                
+            }
+        }
+
     }
 
 }
