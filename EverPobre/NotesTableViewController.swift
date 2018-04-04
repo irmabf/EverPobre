@@ -82,7 +82,7 @@ class NotesTableViewController: UITableViewController {
        let note =   NSEntityDescription.insertNewObject(forEntityName: "Note", into: DataManager.sharedManager.persistentContainer.viewContext) as! Note
         
         note.title = "Nueva Nota"
-        
+        note.createdAtTI = Date().timeIntervalSince1970
         try! DataManager.sharedManager.persistentContainer.viewContext.save()
         
         noteList.append(note)
