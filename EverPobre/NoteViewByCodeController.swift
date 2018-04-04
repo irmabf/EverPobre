@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate{
 
     // Mark: - Properties
     let dateLabel = UILabel()
@@ -113,6 +113,10 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleTextField.delegate = self
+        
+        
         self.title = "EverPobre"
         
         // Mark: - Navigation Controller
@@ -286,6 +290,14 @@ class NoteViewByCodeController: UIViewController, UIImagePickerControllerDelegat
         imageView.image = image
         
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // Mark: - TextField Delegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        note?.title = textField.text
+        
+        try! note?.managedObjectContext?.save()
     }
 
 }
