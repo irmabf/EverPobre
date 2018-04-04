@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        let noteVC = NoteViewByCodeController()
+        //let noteVC = NoteViewByCodeController()
+        let notesTVC = NotesTableViewController(style: .plain)
         
-        let navController = UINavigationController(rootViewController: noteVC)
+        let navController = UINavigationController(rootViewController: notesTVC)
         
         window?.rootViewController = navController
         window?.tintColor = .blue
