@@ -13,7 +13,7 @@ class DataManager: NSObject {
     
     static let sharedManager = DataManager()
     
-    lazy var peristentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "Everpobre")
         container.loadPersistentStores(completionHandler: {(storeDescription, error) in
